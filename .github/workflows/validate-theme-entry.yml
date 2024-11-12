@@ -56,7 +56,7 @@ jobs:
                 let themes;
 
                 try {
-                    themes = JSON.parse(fs.readFileSync('community-css-themes.json', 'utf8'));
+                    themes = JSON.parse(fs.readFileSync('community-css-themes.json', 'utf8').replace(/,\s*([}\]])/g, '$1'));
                 } catch (e) {
                     addError('Could not parse `community-css-themes.json`, invalid JSON. ' + e.message);
                     return;

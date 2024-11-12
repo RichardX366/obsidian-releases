@@ -18,8 +18,8 @@ jobs:
           script: |
             let fs = require('fs');
 
-            let plugins = JSON.parse(fs.readFileSync('./community-plugins.json', 'utf8'));
-            let stats = JSON.parse(fs.readFileSync('./community-plugin-stats.json', 'utf8'));
+            let plugins = JSON.parse(fs.readFileSync('./community-plugins.json', 'utf8').replace(/,\s*([}\]])/g, '$1'));
+            let stats = JSON.parse(fs.readFileSync('./community-plugin-stats.json', 'utf8').replace(/,\s*([}\]])/g, '$1'));
 
             console.log(`Updating stats for ${Object.keys(plugins).length} plugins`);
             let newStats = {};
